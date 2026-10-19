@@ -14,15 +14,15 @@ dotenv.config()
 
 const app = express();
 app.use(cors());
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
+  })
+);
 ConnectDB()
-
-
 app.use(bodyParser.json());
 
-app.use(fileUpload({
-    useTempFiles:true,
-    tempFileDir:"/tmp/"
-}))
 
 app.use("/api/v1/user" , userRoutes)
 app.use("/api/v1/video" , videoRoutes)
