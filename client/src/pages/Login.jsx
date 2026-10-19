@@ -17,12 +17,12 @@ const Login = () => {
 
     try {
       const res = await API.post("/user/login", { email, password });
-      
+
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data));
 
       alert("Login Successful!");
-      navigate("/");
+      window.location.href = "/";
     } catch (err) {
       setError(err.response?.data?.message || "Login failed!");
     } finally {
@@ -34,7 +34,7 @@ const Login = () => {
     <div style={{ maxWidth: "400px", margin: "50px auto", padding: "20px", border: "1px solid #ccc", borderRadius: "8px" }}>
       <h2>Login</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      
+
       <form onSubmit={handleLogin}>
         <div style={{ marginBottom: "15px" }}>
           <label>Email:</label>
